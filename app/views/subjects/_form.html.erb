@@ -1,0 +1,13 @@
+<h3> Form to add subject </h3>
+
+<%= form_for :subject, url: { :action => 'create' } do |f| %>
+	<%= f.label :Title%>
+	<div>
+		<%= f.text_field :title, placeholder: 'Enter Subject Title'%>
+	</div>
+
+	<div>
+		<%= f.submit 'Submit'%>
+	</div>
+
+<%end%>
