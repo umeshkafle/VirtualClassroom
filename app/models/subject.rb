@@ -1,5 +1,9 @@
 class Subject < ApplicationRecord
 
-	enum student_class: [:computing, :networking]
+	belongs_to :course
+	has_many :uploads
+	has_many :lecturers
+
+	enum student_class: [:computing, :networking, :multimedia, :bba]
 
 end
