@@ -1,11 +1,6 @@
 class SubjectsController < ApplicationController
-  before_action :authenticate_user!
   def index
     @subjects = Subject.all
-  end
-
-  def show
-    @subject = Subject.find(params[:id])
   end
 
   def new
@@ -14,29 +9,35 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(subject_params)
+
     if @subject.save
-      redirect_to @subject
+      redirect_to @subject_path, notice: "The subject has been created!" and return
     end
+    render 'new'
   end
 
   def edit
     @subject = Subject.find(params[:id])
-    render 'form'
   end
 
   def update
+    @subject = Subject.find(params[:id])
+
+    if @subject.update_attributes(subject_params)
+      redirect_to subject_path, notice: "#{title} has been updated!" and return
+    end
+
+    render 'edit'
   end
 
   def destroy
     @subject = Subject.find(params[:id])
-    if @subject.destroy
-      redirect_to subjects_path
-    end
-  end
+    @subject.destroy
 
-  private
+    redirect_to subject_path, notice: "#{title} has been deleted!" and return
+  end
+private
   def subject_params
     params.require(:subject).permit(:title)
   end
-
 end

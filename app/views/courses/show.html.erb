@@ -1,2 +1,21 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<div class="well">
+	<h3> Coursses Show Page </h3>
+	<table class="table table-bordered table-striped">
+	  <thead>
+	    <tr>
+	      <th>course Title</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	      <tr>
+	        <td><%= @course.title %></td>
+	        <td>
+	          <%= link_to "Edit", edit_course_path(@course), class: "btn btn-default" %>
+	        </td>
+	        <td>
+	          <%= link_to "Back", courses_path, class: "btn btn-primary"%>
+	        </td>
+	      </tr>
+	  </tbody>
+	</table>
+</div>

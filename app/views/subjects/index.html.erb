@@ -1,1 +1,30 @@
-<%= link_to 'Add Subject', new_subject_path, class: "btn btn-info"%>
+
+<h1>Subjects</h1>
+<div class="well">
+  <%= link_to "New Subject", new_subject_path, class: "btn btn-primary" %>
+</div>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Subject Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.title %></td>
+        <td>
+          <%= link_to "Edit", edit_subject_path(subject), class: "btn btn-default" %>
+        </td>
+        <td>
+          <%= button_to "Delete", subject, method: :delete, data: { confirm: "Are you sure you wish to delete #{subject.first_name} #{subject.last_name}?" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
