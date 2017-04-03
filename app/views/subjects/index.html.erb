@@ -22,7 +22,7 @@
           <%= link_to "Edit", edit_subject_path(subject), class: "btn btn-default" %>
         </td>
         <td>
-          <%= button_to "Delete", subject, method: :delete, data: { confirm: "Are you sure you wish to delete #{subject.first_name} #{subject.last_name}?" }, class: "btn btn-danger" %>
+          <%= button_to "Delete", subject, method: :delete, data: { confirm: "Are you sure you wish to delete" "#{subject.title}" }, class: "btn btn-danger" %>
         </td>
       </tr>
     <% end %>

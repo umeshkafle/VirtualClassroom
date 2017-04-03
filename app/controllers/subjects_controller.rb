@@ -1,40 +1,45 @@
 class SubjectsController < ApplicationController
   def index
-    @subjects = Subject.all
+    @course = Course.find(params[:course_id])
+    @subjects = @course.subjects
   end
 
   def new
-    @subject = Subject.new
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.new
   end
 
   def create
-    @subject = Subject.new(subject_params)
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.new(subject_params)
 
     if @subject.save
-      redirect_to @subject_path, notice: "The subject has been created!" and return
+      redirect_to [@subject.course, @subject], notice: "The subject has been created!" and return
     end
     render 'new'
   end
 
   def edit
-    @subject = Subject.find(params[:id])
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find(params[:id])
   end
 
   def update
-    @subject = Subject.find(params[:id])
-
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find(params[:id])
     if @subject.update_attributes(subject_params)
-      redirect_to subject_path, notice: "#{title} has been updated!" and return
+      redirect_to [@subject.course, @subjects], notice: "#{title} has been updated!" and return
     end
 
     render 'edit'
   end
 
   def destroy
-    @subject = Subject.find(params[:id])
-    @subject.destroy
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find(params[:id])
+    if @subject.destroy
 
-    redirect_to subject_path, notice: "#{title} has been deleted!" and return
+    redirect_to course_subjects_url, notice: "#{title} has been deleted!" and return
   end
 private
   def subject_params
