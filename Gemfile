@@ -7,7 +7,10 @@ end
 
 gem 'devise', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 0.11.2'
+gem 'streamio-ffmpeg', '=1.0.0'
+gem 'carrierwave-video', '~>0.5.6'
+gem 'carrierwave-video-thumbnailer', '~>0.1.4'
 gem 'activeadmin', '~> 1.0.0.pre5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
